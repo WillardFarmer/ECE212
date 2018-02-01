@@ -28,7 +28,7 @@ movem.l %d2-%d7/%a2-%a5,(%a7)
 
 
 /* for the first data array */
-move.l #22, %d2 /* load counter, this will vary based on array size */
+move.l #15, %d2 /* load counter, this will vary based on array size */
 move.l #AddressOne, %a3 /*move address of AddressOne into A3 */
 lea FirstBlock, %a2  /* move address of FirstBlock into A2 */
 again: move.l (%a2), (%a3) /*swap memory */
@@ -53,29 +53,20 @@ rts
 
 
 FirstBlock:
-.long 0x30
-.long 0x31
-.long 0x32
-.long 0x33
-.long 0x34
-.long 0x35
-.long 0x36
-.long 0x37
-.long 0x38
-.long 0x39
-.long 0x41
 .long 0x42
-.long 0x43
+.long 0x0F
+.long 0x10
+.long 0x1F
+.long 0x20
+.long 0x2F
+.long 0x35
+.long 0x3A
+.long 0x40
 .long 0x44
-.long 0x45
-.long 0x46
-.long 0x61
-.long 0x62
-.long 0x63
+.long 0x47
+.long 0x50
+.long 0x60
 .long 0x64
-.long 0x65
-.long 0x66
+.long 0x67
 .long 0x0d
-
-
 

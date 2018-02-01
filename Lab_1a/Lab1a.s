@@ -42,9 +42,6 @@ blt LowLetter
 
 Invalid:
 
-/*move.l #0xFFFFFFFF, %d3
-  move.l %d3, (%a3)*/
-
 move.l #0xFFFFFFFF, (%a3)
 bra Reset
 
