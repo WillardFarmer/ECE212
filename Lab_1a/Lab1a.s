@@ -20,8 +20,8 @@ movem.l %d2-%d7/%a2-%a5,(%a7)
 /*Write your program here******************************************/
 
 
-move.l 0x2300000, %a2
-move.l 0x2310000, %a3
+move.l #0x2300000, %a2
+move.l #0x2310000, %a3
 move.l #100, %d7
 
 
@@ -79,7 +79,7 @@ Reset:
 add.l #4, %a2
 add.l #4, %a3
 sub.l #1, %d7
-
+bra Start
 
 ExitProgram:
 
