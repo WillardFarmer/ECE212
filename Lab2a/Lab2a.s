@@ -21,44 +21,44 @@ movem.l %d2-%d7/%a2-%a5,(%a7)
 
 /*Part A **********************************************************/
 
-move.l 0x2300004, %A2	    /*Array 1*/
-move.l 0x2300008, %A3	    /*Array 2*/
-move.l 0x230000C, %A4	    /*Output Array*/
+move.l 0x2300004, %A2	/*Array 1*/
+move.l 0x2300008, %A3	/*Array 2*/
+move.l 0x230000C, %A4	/*Output Array*/
 
 
-move.l (%A2), %D2	    /*First value*/
-add.l (%A3), %D2	    /*add second value*/
-move.l %D2, (%A4)	    /*move to output array*/
+move.l (%A2), %D2	/*Add array 1 element into D2*/
+add.l (%A3), %D2	/*Add array 2 element into D2*/
+move.l %D2, (%A4)	/*Move sum to Output array*/
 
-move.l 4(%A2), %D2	    /*First value*/
-add.l 4(%A3), %D2	    /*add second value*/
-move.l %D2, 4(%A4)	    /*move to output array*/
+move.l 4(%A2), %D2	/*Add array 1 element into D2*/
+add.l 4(%A3), %D2	/*Add array 2 element into D2*/
+move.l %D2, 4(%A4)	/*Move sum to Output array*/
 
-move.l 8(%A2), %D22	    /*First value*/
-add.l 8(%A3), %D2	    /*add second value*/
-move.l %D2, 8(%A4)	    /*move to output array*/
+move.l 8(%A2), %D2	/*Add array 1 element into D2*/
+add.l 8(%A3), %D2	/*Add array 2 element into D2*/
+move.l %D2, 8(%A4) 	/*Move sum to Output array*/
 
 
 /*Part B **********************************************************/
 
-move.l 0x2300000, %D7	    /*Size*/
-move.l 0x2300004, %A2	    /*Array 1*/
-move.l 0x2300008, %A3	    /*Array 2*/
-move.l 0x230000C, %A4	    /*Output Array*/
+move.l 0x2300000, %D7 	/*Size*/
+move.l 0x2300004, %A2	/*Array 1*/
+move.l 0x2300008, %A3	/*Array 2*/
+move.l 0x2300010, %A4	/*Output Array*/
 
-move.l %A3, %D3
-sub.l %A2, %D3		    /*D3 array offset*/
+move.l %A3, %D3		/*Move A2 address into D3*/
+sub.l %A2, %D3		/*D3 array offset*/
 
 LoopB:
-move.l (%A2,%D3), %D2	    /*move element in array 2 to %D2*/
-add.l (%A2),%D2		    /*add element in array 1 to %D2*/
-move.l %D2, (%A4)	    /*move sum to array 3*/
+move.l (%A2,%D3), %D2	/*Address refers to array 2*/
+add.l (%A2),%D2		/*Add Array 1*/
+move.l %D2, (%A4)	/*Move sum to ouptut array*/
 
-subq.l #1, %D7		    /*decrement counter*/
-beq	End		    /*check for 0*/
-addq.l #4,%A2		    /*increment array 1*/
-addq.l #4,%A4		    /*increment array 2*/
-bra LoopB		    /*loop*/
+subq.l #1, %D7	 	/*Decrement counter*/
+beq	End		/*Branch if counter is 0*/
+addq.l #4,%A2		/*Increment A2 by a long*/
+addq.l #4,%A4		/*Increment A4 by a long*/
+bra LoopB		/*LoopB*/
 
 End:
 
@@ -66,19 +66,19 @@ End:
 /*Part C **********************************************************/
 
 
-move.l 0x2300000, %D7	    /*Size*/
-move.l 0x2300004, %A2	    /*Array 1*/
-move.l 0x2300008, %A3	    /*Array 2*/
-move.l 0x230000C, %A4	    /*Output Array*/
+move.l 0x2300000, %D7 	/*Size*/
+move.l 0x2300004, %A2	/*Array 1*/
+move.l 0x2300008, %A3	/*Array 2*/
+move.l 0x2300014, %A4	/*Output Array*/
 
 LoopC:
-move.l (%A2)+, %D2	    /*move first value into %D2 and increment*/
-add.l (%A3)+, %D2	    /*add second value into %D2 and increment*/
-move.l %D2, (%A4)+	    /*move sum into %D2 and increment*/
+move.l (%A2)+, %D2
+add.l (%A3)+, %D2
+move.l %D2, (%A4)+
 
-subq.l #1, %D7		    /*decrement counter*/		    
-beq	Exit		    /*check for 0*/
-bra LoopC		    /*loop*/
+subq.l #1, %D7
+beq	Exit
+bra LoopC
 
 Exit:
 

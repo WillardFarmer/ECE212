@@ -10,43 +10,43 @@ movem.l %d2-%d7/%a2-%a5,(%a7)
 
 /******************************************************************/
 /* General Information ********************************************/
-/* File Name: Lab2.s **********************************************/
-/* Names of Students: Willard Farmer and Chris Pontikes ***********/
-/* Date: 2018-02-15                                              **/
+/* File Name: Lab2.s *********************************************/
+/* Names of Students: _________________ and ____________________ **/
+/* Date: _________________                                       **/
 /* General Description:                                          **/
 /*                                                               **/
 /******************************************************************/
 
 /*Write your program here******************************************/
 
-move.l 0x2300000, %D7	    /*Size*/
-move.l 0x2300004, %A2	    /*X*/
-move.l 0x2300008, %A3	    /*Y*/
-move.l 0x230000C, %A4	    /*Temp storage (unused)*/
-move.l 0x2300010, %A5	    /*final address*/
-clr %D4			    /*Initialize Sum*/
-subq.l #1, %D7		    /*Initial decrement of %D7*/
+move.l 0x2300000, %D7 	/*Size*/
+move.l 0x2300004, %A2	/*X*/
+move.l 0x2300008, %A3	/*Y*/
+move.l 0x230000C, %A4	/*Temp*/
+move.l 0x2300010, %A5	/*final address*/
+clr %D4	/*Sum*/
+subq.l #1, %D7
 
-Loop:			    
-move.l 4(%A3), %D2	    /*Moves second Y value into %D2*/
-add.l (%A3)+, %D2	    /*Add the first Y value and increment*/
-move.l 4(%A2), %D3	    /*find and store the distance   */ 
-sub.l (%A2)+, %D3	    /*between X values		    */
+Loop:	/*Temp allocation*/
+move.l 4(%A3), %D2
+add.l (%A3)+, %D2
+move.l 4(%A2), %D3
+sub.l (%A2)+, %D3
 
-cmp.l #1, %D3		    /*Check if the distance is one*/
-beq One			    /*If so then no multiplication is required*/
-asl.l #1, %D2		    /*Overwise multiply the Y values by 2*/
+cmp.l #1, %D3
+beq One
+asl.l #1, %D2
 One:
-add.l %D2, %D4		    /*Add the area to the sum %D4*/
-subq.l #1, %D7		    /*Decrement counter*/
-bgt Loop		    /*Loop*/
+add.l %D2, %D4
+subq.l #1, %D7
+bgt Loop
 
 
-asr.l #1, %D4		    /*Average all Y values to find area*/
-bcc NoCarry		    /*Check for carry*/
-addq.l #1, %D4		    /*Round up*/
+asr.l #1, %D4
+bcc NoCarry
+addq.l #1, %D4
 NoCarry:
-move.l %D4, (%A5)	    /*Move the final sum to its specified address*/
+move.l %D4, (%A5)
 
 
 
