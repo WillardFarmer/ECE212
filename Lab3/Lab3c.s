@@ -19,6 +19,8 @@ Display:
 /*Write your program here******************************************/
 
 move.l %d7, -(%sp)
+move.l #0x2300000, %a2
+move.l #0x2310000, %a3
 
 jsr cr
 jsr cr
@@ -30,22 +32,23 @@ jsr value
 addq.l #4, %sp
 jsr cr
 
-move.l 24(%sp), %d7		/*Counter*/
 
-InputList:
+/*Entry list*/
+move.l 20(%sp), %d7		/*Counter*/
 pea NumEntList
 jsr iprintf
 addq.l #4, %sp
-jsr cr
 
+InputList:
+jsr cr
 move.l (%a2)+, -(%sp)
 jsr value
 addq.l #4, %sp
-
 subq.l #1, %d7
 tst.l %d7
 bne InputList
 
+jsr cr
 
 pea MinNum
 jsr iprintf
@@ -76,13 +79,33 @@ pea NumDiv2
 jsr iprintf
 move.l 24(%sp), (%sp)
 jsr value
-addq.l #4, %sp
+addq.l #8, %sp
 jsr cr
 
 
+/*Divisor list*/
+move.l 24(%sp), %d7		/*Counter*/
+pea NumDivList
+jsr iprintf
+addq.l #4, %sp
 
+DivisorList:
+jsr cr
+move.l (%a3)+, -(%sp)
+jsr value
+addq.l #4, %sp
+subq.l #1, %d7
+tst.l %d7
+bne DivisorList
 
+jsr cr
 
+pea Ended
+jsr iprintf
+addq.l #4, %sp
+jsr cr
+
+move.l (%sp)+, %d7
 
 
 rts 
@@ -103,9 +126,9 @@ NumDiv1:
 NumDiv2:
 .string " number(s) divisible by "
 NumEntList:
-.string "Divisible numbers are:"
+.string "The inputed numbers are:"
 NumDivList:
-.string "Inputted numbers are:"
+.string "The divisible numbers are:"
 Ended:
 .string "Program ended"
 /*All Strings placed here **************************************************/

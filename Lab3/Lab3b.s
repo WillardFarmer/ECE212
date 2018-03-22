@@ -20,7 +20,9 @@ Stats:
 
 sub.l #40, %sp
 movem.l %d2-%d7/%a2-%a5, (%sp)
-clr %d4						/*Number of divisors*/
+move.l #0x2300000, %a2
+move.l #0x2310000, %a3
+clr.l %d4						/*Number of divisors*/
 
 
 

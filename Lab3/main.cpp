@@ -15,6 +15,10 @@ extern "C" {
 	void cr(); /*Subroutine for carriage return and line feed*/
 	int getstring(); /*Subroutine to get numerical value from keyboard*/
 	void value(int P1); /*Subroutine to print decimal value to monitor*/
+	int getchr(); /*function to get value of keyboard character*/
+	void putchr(int B);
+	void value1(int P1);
+	
 }
  
 /*****************************************************
@@ -68,7 +72,33 @@ repeat:			r = scanf("%d", &number );
 			return number;		
 }
 
+
+/*****************************************************
+A function to get character from the keyboard
+Input = nothing
+Output = places the Ascii character input into data
+register D0
+*****************************************************/ 
+
+int getchr()
+{			
+			return getchar();
+			
+} 
+
 /**************************************************************/
+
+void putchr(int B) 
+{			
+			putchar(B);
+			
+}
+
+void value1(int P1)
+{
+		iprintf( "0x\%X\n", P1);
+}
+
 
 const char * AppName="bubblesortB";
 
