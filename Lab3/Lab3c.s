@@ -36,7 +36,7 @@ jsr cr                  /*Carriage Return*/
 /************/
 /*Entry list*/
 
-move.l 20(%sp), %d7		  /*Counter for number of entries*/
+move.l 20(%sp), %d7     /*Counter for number of entries*/
 pea NumEntList          /*"The inputed numbers are:"*/
 jsr iprintf             /*Print*/
 addq.l #4, %sp          /*Clean Stack*/
@@ -86,7 +86,7 @@ jsr cr                  /*Carriage Return*/
 
 
 /*Divisor list*/
-move.l 24(%sp), %d7		  /*Initialize the divisor counter*/
+move.l 24(%sp), %d7     /*Initialize the divisor counter*/
 pea NumDivList          /*"The divisible numbers are:"*/
 jsr iprintf             /*Print*/
 addq.l #4, %sp          /*Clean the stack*/
