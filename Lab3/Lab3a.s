@@ -38,7 +38,7 @@ jsr iprintf       /*Print*/
 addq.l #4, %sp    /*clean stack*/
 
 jsr cr            /*carriage return*/
-jsr getstring     /*"Please enter the divisor(2min-5max) followed by 'enter'"*/
+jsr getstring     /*Input number of entries*/
 move.l %d0, %d2   /*Store input in %d2*/
 jsr cr            /*carriage return*/
 
