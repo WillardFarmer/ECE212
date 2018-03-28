@@ -22,13 +22,13 @@ sub.l #40, %sp                    /*Set stack pointer*/
 movem.l %d2-%d7/%a2-%a5, (%sp)    /*Backup up registers*/
 move.l #0x2300000, %a2            /*The test program did not pass correct values for the address*/
 move.l #0x2310000, %a3            /*registers so they've been hardcoded into the subroutine.    */
-clr.l %d4						              /*%d4 is the number of divisors*/
+clr.l %d4                         /*%d4 is the number of divisors*/
 
 /*Initializations for the MinMax Loop*/
-move.l 48(%sp), %d7		/*Counter for MinMax*/
-move.l %a2, %a4			  /*Copy entry array pointer*/
-move.l (%a4), %d2 		/*Min*/
-move.l (%a4)+, %d3	  /*Max*/
+move.l 48(%sp), %d7   /*Counter for MinMax*/
+move.l %a2, %a4       /*Copy entry array pointer*/
+move.l (%a4), %d2     /*Min*/
+move.l (%a4)+, %d3    /*Max*/
 
 MinMax:
 cmp.l (%a4), %d2      /*Compare the next entry to the Min*/
@@ -45,13 +45,13 @@ cmp.l #1, %d7         /*Check for last value*/
 bgt MinMax            /*Loop for whole array*/
 
 
-move.l %d2, (%a3)+		/*Offload Min*/
-move.l %d3, (%a3)+		/*Offload Max*/
+move.l %d2, (%a3)+    /*Offload Min*/
+move.l %d3, (%a3)+    /*Offload Max*/
 
 
-move.l 48(%sp), %d7		/*Reinitialize Counter for Mean*/
-move.l %a2, %a4				/*Copy number array pointer*/
-clr %d2						    /*Sum register*/
+move.l 48(%sp), %d7   /*Reinitialize Counter for Mean*/
+move.l %a2, %a4       /*Copy number array pointer*/
+clr %d2               /*Sum register*/
 
 Mean:
 add.l (%a4)+, %d2     /*Add entry to sum register*/
@@ -63,9 +63,9 @@ move.w #0, (%a3)+     /*Fill a word with zeros*/
 move.w %d2, (%a3)+		/*Offload mean*/
 
 
-move.l 48(%sp), %d7		/*Reinitialize the Counter for Divisor*/
-move.l %a2, %a4				/*Copy number array pointer*/
-clr %d2						    /*Temp register*/
+move.l 48(%sp), %d7   /*Reinitialize the Counter for Divisor*/
+move.l %a2, %a4       /*Copy number array pointer*/
+clr %d2               /*Temp register*/
 
 Divisor:
 tst %d7               /*Test if the counter has reached zero*/
