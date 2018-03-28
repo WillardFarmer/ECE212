@@ -60,7 +60,7 @@ tst %d7               /*Test if counter has reached zero*/
 bne Mean              /*Loop for whole entry array*/
 divu.w 48(%sp), %d2   /*Find the mean*/
 move.w #0, (%a3)+     /*Fill a word with zeros*/
-move.w %d2, (%a3)+		/*Offload mean*/
+move.w %d2, (%a3)+    /*Offload mean*/
 
 
 move.l 48(%sp), %d7   /*Reinitialize the Counter for Divisor*/
