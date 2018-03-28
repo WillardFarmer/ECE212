@@ -70,7 +70,7 @@ pea InvalidSmaS   /*"Invalid entry. Please enter a number more than "*/
 jsr iprintf       /*No need to pop, will be overwritten in next step*/
 move.l %d2, (%sp) /*Move input into the stack to be displayed*/
 jsr value         /*Print Input*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr cr            /*carriage return*/
 jsr getstring     /*Input new value*/
@@ -87,7 +87,7 @@ move.l %d2, 48(%sp)   /*Store number of entries in the stack*/
 jsr cr            /*carriage return*/				
 pea Divisor       /*"Please enter the divisor(2min-5max) followed by 'enter'"*/
 jsr iprintf       /*Print*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr cr            /*carriage return*/				
 jsr getstring     /*Input value*/
@@ -108,10 +108,10 @@ bra ContinueDiv   /*Continue since input is in range [2,5]*/
 
 InvalidDSma:
 pea InvalidSmaS   /*Invalid entry. Please enter a number more than */
-jsr iprintf			  /*No need to pop, will be overwritten in next step*/
+jsr iprintf       /*No need to pop, will be overwritten in next step*/
 move.l %d2, (%sp) /*Move input to stack*/
 jsr value         /*Print input*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr cr            /*carriage return*/				
 jsr getstring     /*Input value*/
@@ -122,10 +122,10 @@ bra DivisorCheck
 
 InvalidDBig:
 pea InvalidBigS   /*Invalid entry. Please enter a number less than */
-jsr iprintf			  /*No need to pop, will be overwritten in next step*/
+jsr iprintf       /*No need to pop, will be overwritten in next step*/
 move.l %d2, (%sp) /*Move input to stack*/
 jsr value         /*Print input*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr cr            /*carriage return*/				
 jsr getstring     /*Input value*/
@@ -140,7 +140,7 @@ move.l %d2, 44(%sp)   /*Store divisor in the stack*/
 /*********************/
 
 
-move.l 48(%sp), %d7		  /*%d7 is a counter for the number of entries*/
+move.l 48(%sp), %d7     /*%d7 is a counter for the number of entries*/
 move.l #0x2300000, %a2  /*%a2 points to the memory location for entries*/
 
 
@@ -151,7 +151,7 @@ ValueLoop:
 jsr cr            /*carriage return*/
 pea EnterNum      /*"Please enter a number(Positive Only): "*/
 jsr iprintf       /*Print*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr getstring     /*Input Entry*/
 move.l %d0, %d2   /*Store Entry in %d2*/
@@ -160,7 +160,7 @@ bge Continue      /*Check for if entry is positive*/
 jsr cr            /*carriage return*/
 pea InvalidLT0    /*"The number must be positive"*/
 jsr iprintf       /*Print*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 bra ValueLoop     /*Loop without decrementing the counter*/
 
 Continue:
@@ -174,7 +174,7 @@ LastValue:
 jsr cr            /*carriage return*/
 pea FinalNum      /*"Please enter the last number(Positive Only): "*/
 jsr iprintf       /*Print*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr getstring     /*Input last entry*/
 move.l %d0, %d2   /*Store Entry in %d2*/
@@ -183,7 +183,7 @@ bge ContinueLast  /*Check for if entry is positive*/
 jsr cr            /*carriage return*/
 pea InvalidLT0    /*"The number must be positive"*/
 jsr iprintf       /*Print*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 bra LastValue:    /*Loop until positive value is inputted*/ 
 
 ContinueLast:
@@ -193,7 +193,7 @@ move.l %d2, (%a2)+  /*Move last entry into its memory location*/
 
 
 movem.l (%sp), %d2-%d7/%a2-%a5  /*Reload registers from stack*/
-add.l #40, %sp 		              /*Clean Stack*/
+add.l #40, %sp                  /*Clean Stack*/
 
 rts
 
