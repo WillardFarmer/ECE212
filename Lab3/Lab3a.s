@@ -20,7 +20,7 @@ WelcomePrompt:
 
 sub.l #40, %sp                    /*Set stack pointer*/
 movem.l %d2-%d7/%a2-%a5, (%sp)    /*Backup up registers*/
-clr.l %d2 			                  /*%d2 will be used as a temp storage*/
+clr.l %d2                         /*%d2 will be used as a temp storage*/
 
 jsr cr            /*carriage return*/
 jsr cr            /*carriage return*/
