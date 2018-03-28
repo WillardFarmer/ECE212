@@ -53,10 +53,10 @@ bra ContinueEnt   /*Continue since input is in range [3,15]*/
 /*Too large Error message*/
 InvalidEBig:
 pea InvalidBigS   /*"Invalid entry. Please enter a number less than "*/
-jsr iprintf			  /*No need to clean, will be overwritten in next step*/
+jsr iprintf       /*No need to clean, will be overwritten in next step*/
 move.l %d2, (%sp) /*Move input into the stack to be displayed*/
 jsr value         /*Print Input*/
-addq.l #4, %sp 		/*Clean Stack*/
+addq.l #4, %sp    /*Clean Stack*/
 
 jsr cr            /*carriage return*/
 jsr getstring     /*Input new value*/
@@ -67,7 +67,7 @@ bra EntryCheck    /*Return to entry checker*/
 /*Too small Error message*/
 InvalidESma:
 pea InvalidSmaS   /*"Invalid entry. Please enter a number more than "*/
-jsr iprintf			  /*No need to pop, will be overwritten in next step*/
+jsr iprintf       /*No need to pop, will be overwritten in next step*/
 move.l %d2, (%sp) /*Move input into the stack to be displayed*/
 jsr value         /*Print Input*/
 addq.l #4, %sp 		/*Clean Stack*/
