@@ -25,9 +25,16 @@ LedSub:
 sub.l #40, %sp
 movem.l %d2-%d7/%a2-%a5, (%sp)
 
+clr.l %d4
+
+Loop:
+addq.l #1, %d4
+
 move.l 44(%sp), %a2
 clr.l %d7		/*outer loop, rows*/
-clr.l %d6		/*inner loop, columns*/
+move.l #7, %d6		/*inner loop, columns*/
+
+
 
 
 Rows:
@@ -35,7 +42,7 @@ Columns:
 btst.b %d6, (%A2, %d7)
 beq Skip
 addq.l #1, %d5 /*test*/
-/*
+
 move.l %d6, -(%sp)
 jsr Column
 move.l (%sp)+, %d2
@@ -43,25 +50,26 @@ move.l %d7, -(%sp)
 jsr Row
 move.l (%sp)+, %d2
 jsr TurnOnLed
-move.l #300, -(%sp)	/*<------Delay*
+move.l #20, -(%sp)	/*<------Delay*/
 jsr Delay
 move.l (%sp)+, %d2
 jsr TurnOffLed
-*/
+
 
 
 Skip:
 
-addq.l #1, %d6
-cmp.l #8, %d6
-blt  Columns
+subq.l #1, %d6
+tst.l %d6
+bge  Columns
 
-clr.l %d6
+move.l #7, %d6
 addq.l #1, %d7
 cmp.l #8, %d7
 blt Rows
 
-
+cmp.l #400, %d4
+blt Loop
 
 
 movem.l (%sp), %d2-%d7/%a2-%a5

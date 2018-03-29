@@ -27,8 +27,49 @@ extern "C" {
 	int getchr(); /*function to get value of keyboard character*/
 	void cr(); /*Carriage return and line feed subroutine*/
 	void putchr(int B);
-	
+	int getstring(); /*Subroutine to get numerical value from keyboard*/
+	void value1(int P1);
+	void value(int P1); /*Subroutine to print decimal value to monitor*/
 }
+
+void value(int P1)
+{
+		iprintf( "\%d\n", P1);
+}
+
+/*****************************************************
+A Subroutine that gets a numerical value from the keyboard
+Input = nothing
+Output = numberical value in register D0
+This subroutine includes buffer check by clearing the buffer
+if a wrong input is given and prompts the user to re-enter
+a valid number
+*****************************************************/ 
+int number;
+int getstring()
+{			
+			int r;
+repeat:			r = scanf("%d", &number );
+/*******************************************
+ * clears the buffer if a wrong input is given
+*********************************************/
+
+		if (r==0)
+		{	getchar();			
+			iprintf("\n");
+			iprintf("Not a number entered, please enter valid number \n");	
+			goto repeat;	
+		}
+		
+				
+			return number;		
+}
+
+void value1(int P1)
+{
+		iprintf( "0x\%X\n", P1);
+}
+
 
 
 /*****************************************************

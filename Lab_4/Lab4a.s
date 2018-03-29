@@ -60,7 +60,7 @@ bra Input
 
 Valid:
 
-
+jsr cr
 
 move.l %d2, 44(%sp)
 movem.l (%sp), %d2-%d7/%a2-%a5
